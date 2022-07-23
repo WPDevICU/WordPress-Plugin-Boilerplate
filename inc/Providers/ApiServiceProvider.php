@@ -42,16 +42,6 @@ class ApiServiceProvider extends AbstractServiceProvider {
 	 */
 	public function provides( string $id ): bool {
 		$provides = array(
-			DriverApi::class,
-			AuthenticationApi::class,
-			DocumentTypesApi::class,
-			DeliveryRequestApi::class,
-			VerificationRequestApi::class,
-			DeliveryActivityApi::class,
-			NotificationApi::class,
-			PusherWebhookApi::class,
-			TransactionApi::class,
-			WithdrawalRequestApi::class,
 		);
 
 		return in_array( $id, $provides, true );
@@ -63,15 +53,5 @@ class ApiServiceProvider extends AbstractServiceProvider {
 	 * @return void
 	 */
 	public function register(): void {
-		$this->getContainer()->addShared( DriverApi::class );
-		$this->getContainer()->addShared( AuthenticationApi::class )->addArgument( Auth::class );
-		$this->getContainer()->addShared( DocumentTypesApi::class )->addArgument( Types::class );
-		$this->getContainer()->addShared( VerificationRequestApi::class );
-		$this->getContainer()->addShared( DeliveryRequestApi::class );
-		$this->getContainer()->addShared( DeliveryActivityApi::class );
-		$this->getContainer()->addShared( NotificationApi::class );
-		$this->getContainer()->addShared( PusherWebhookApi::class );
-		$this->getContainer()->addShared( TransactionApi::class );
-		$this->getContainer()->addShared( WithdrawalRequestApi::class );
 	}
 }

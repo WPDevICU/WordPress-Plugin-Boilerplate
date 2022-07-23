@@ -45,11 +45,6 @@ class ControllerServiceProvider extends AbstractServiceProvider {
 			InstallController::class,
 			AdminController::class,
 			ApiController::class,
-			VerificationController::class,
-			DriverController::class,
-			DeliveryController::class,
-			SocketController::class,
-			TransactionController::class,
 		);
 
 		return in_array( $id, $provides, true );
@@ -64,11 +59,4 @@ class ControllerServiceProvider extends AbstractServiceProvider {
 		$this->getContainer()->addShared( InstallController::class );
 		$this->getContainer()->addShared( AdminController::class )->addArguments( array( Menu::class, Assets::class ) );
 		$this->getContainer()->addShared( ApiController::class );
-		$this->getContainer()->addShared( VerificationController::class )->addArgument( Types::class );
-		$this->getContainer()->addShared( DriverController::class );
-		$this->getContainer()->addShared( DeliveryController::class );
-		$this->getContainer()->addShared( SocketController::class )->addArgument( DriverSocketInterface::class );
-		$this->getContainer()->add( DriverSocketInterface::class, PusherSocket::class );
-		$this->getContainer()->addShared( TransactionController::class );
-	}
 }
