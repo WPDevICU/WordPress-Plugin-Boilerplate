@@ -1,0 +1,78 @@
+{
+  "name": "TheNameSpace/wpb",
+  "description": "WordPress Plugin Boilerplate Functionality integration.",
+  "type": "wordpress-plugin",
+  "license": "GPL2+",
+  "autoload": {
+	"psr-4": {
+	  "TheNameSpace\\WordPressPluginBoilerplate\\": "inc/",
+	  "TheNameSpace\\WordPressPluginBoilerplate\\Dependencies\\": "lib/"
+	}
+  },
+  "autoload-dev": {
+	"psr-4": { "TheNameSpace\\WordPressPluginBoilerplate\\Tests\\": "tests/phpunit/" }
+  },
+  "authors": [
+	{
+	  "name": "TheNameSpace",
+	  "email": "info@TheNameSpace.com"
+	}
+  ],
+  "scripts": {
+	"post-install-cmd": [
+	  "\"vendor/bin/mozart\" compose",
+	  "composer dump-autoload"
+	],
+	"post-update-cmd": [
+	  "\"vendor/bin/mozart\" compose",
+	  "composer dump-autoload"
+	],
+	"test": [
+	  "vendor/bin/phpunit"
+	]
+  },
+  "minimum-stability": "stable",
+  "require-dev": {
+	"automattic/vipwpcs": "^2.3",
+	"phpunit/phpunit": "^9.0",
+	"yoast/phpunit-polyfills": "^1.0",
+	"coenjacobs/mozart": "^0.7.1",
+    "wp-phpunit/wp-phpunit": "^6"
+  },
+  "require": {
+	"league/container": "^4.2",
+    "psr/container": "^1.0",
+	"psr/cache": "^1.0",
+	"psr/simple-cache": "^1.0"
+  },
+  "extra": {
+	"mozart": {
+	  "dep_namespace": "TheNameSpace\\WordPressPluginBoilerplate\\Dependencies\\",
+	  "dep_directory": "/lib/",
+	  "classmap_directory": "/lib/classes/",
+	  "classmap_prefix": "TheNameSpace_WordPressPluginBoilerplate_",
+	  "packages": [
+		"league/container"
+	  ],
+	  "excluded_packages": [
+		"psr/container",
+		"psr/cache",
+		"psr/simple-cache"
+	  ],
+	  "override_autoload": {
+		"google/apiclient": {
+		  "classmap": [
+			"src/"
+		  ]
+		}
+	  },
+	  "delete_vendor_directories": true
+	}
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": false,
+      "automattic/jetpack-autoloader": false
+    }
+  }
+}
